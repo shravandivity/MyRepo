@@ -12,10 +12,14 @@
   <ItemGroup>
     <None Remove="Data\" />
     <None Remove="Migrations\" />
+    <None Remove="Data\Config\" />
+    <None Remove="Data\SeedData\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Data\Config\" />
+    <Folder Include="Data\SeedData\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.8" />
@@ -24,5 +28,11 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.8" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Data\Config\ProductConfiguration.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\Config\ProductConfiguration.cs" />
   </ItemGroup>
 </Project>
