@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "gLy62LpSTCKMQb0GHsVDbE3kSwe/+7nO1Er0AewQvTs=",
+  "Source": "SchoolAPI_Service",
+  "BasePath": "_content/SchoolAPI_Service",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
