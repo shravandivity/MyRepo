@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SchoolAPI_Service.Data;
-using SchoolAPI_Service.IRepository;
 using SchoolAPI_Service.Mapping;
 using SchoolAPI_Service.Repository;
+using SchoolAPI_Service.Repository.IRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 

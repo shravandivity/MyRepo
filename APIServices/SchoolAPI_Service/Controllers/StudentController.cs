@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Azure;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchoolAPI_Service.DTOs;
-using SchoolAPI_Service.IRepository;
 using SchoolAPI_Service.Model;
+using SchoolAPI_Service.Repository.IRepository;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -35,7 +30,7 @@ namespace SchoolAPI_Service.Controllers
         {
             try
             {
-                var studentDomainModel = await _studentRepository.GetAllAsync();
+                var studentDomainModel = await _studentRepository.GetAllAsync(includeProperties: "Correspondence");
                 var studentDto = _mapper.Map<List<StudentDto>>(studentDomainModel);
                 _apiResponse.Result = studentDto;
                 _apiResponse.StatusCode = System.Net.HttpStatusCode.OK;
@@ -57,7 +52,7 @@ namespace SchoolAPI_Service.Controllers
         {
             try
             {
-                var studentDomainModel = await _studentRepository.GetAsync(s => s.StudentId == id);
+                var studentDomainModel = await _studentRepository.GetAsync(s => s.StudentId == id, includeProperties: "Correspondence");
                 var studentDto = _mapper.Map<StudentDto>(studentDomainModel);
                 _apiResponse.Result = studentDto;
                 _apiResponse.StatusCode = System.Net.HttpStatusCode.OK;

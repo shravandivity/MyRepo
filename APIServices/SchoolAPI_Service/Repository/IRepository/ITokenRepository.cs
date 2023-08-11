@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Identity;
 
-namespace SchoolAPI_Service.IRepository
+namespace SchoolAPI_Service.Repository.IRepository
 {
 	public interface ITokenRepository
 	{

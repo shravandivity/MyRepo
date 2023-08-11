@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using SchoolAPI_Service.Data;
-using SchoolAPI_Service.IRepository;
+using SchoolAPI_Service.Repository.IRepository;
 
 namespace SchoolAPI_Service.Repository
 {
@@ -17,22 +18,40 @@ namespace SchoolAPI_Service.Repository
             _dbSet = _dbContext.Set<T>();
 		}
 
-        public virtual async Task CreateAsync(T Entity)
+        public async Task CreateAsync(T Entity)
         {
             await _dbSet.AddAsync(Entity);
             await SaveAsync();
         }
 
-        public virtual async Task<List<T>> GetAllAsync()
+        public async Task<List<T>> GetAllAsync(string? includeProperties = null)
         {
-            return await _dbSet.ToListAsync();
+            IQueryable<T> query = _dbSet;
+            
+            if (includeProperties != null)
+            {
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.None))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
+            //return query.ToList();
+
+            return await query.ToListAsync();
         }
 
-        public virtual async Task<T> GetAsync(Expression<Func<T,bool>>? filter = null)
+        public async Task<T> GetAsync(Expression<Func<T,bool>>? filter = null, string? includeProperties = null)
         {
             IQueryable<T> query = _dbSet;
             if (filter != null)
                 query = query.Where(filter);
+            if (includeProperties != null)
+            {
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.None))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
             return await query.FirstOrDefaultAsync();
         }
 

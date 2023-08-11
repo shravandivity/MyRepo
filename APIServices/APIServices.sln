@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1706.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolAPI_Service", "SchoolAPI_Service\SchoolAPI_Service.csproj", "{F7C631F2-6B15-4BE8-870B-A214138330E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolAPI_Web", "SchoolAPI_Web\SchoolAPI_Web.csproj", "{EEA060D7-B7AA-4B5C-B543-C98EA9F3EBCF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F7C631F2-6B15-4BE8-870B-A214138330E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7C631F2-6B15-4BE8-870B-A214138330E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7C631F2-6B15-4BE8-870B-A214138330E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEA060D7-B7AA-4B5C-B543-C98EA9F3EBCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEA060D7-B7AA-4B5C-B543-C98EA9F3EBCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEA060D7-B7AA-4B5C-B543-C98EA9F3EBCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEA060D7-B7AA-4B5C-B543-C98EA9F3EBCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

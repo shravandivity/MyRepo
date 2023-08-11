@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SchoolAPI_Service.DTOs;
-using SchoolAPI_Service.IRepository;
 using SchoolAPI_Service.Model;
+using SchoolAPI_Service.Repository.IRepository;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,6 +22,7 @@ namespace SchoolAPI_Service.Controllers
             this._apiResponse = new ();
             _tokenRepository = tokenRepository;
             this._loginResponseDto = new();
+            this._loginResponseDto.User = new();
         }
 
         // POST api/values
@@ -85,6 +82,10 @@ namespace SchoolAPI_Service.Controllers
                             //Create Jwt token
                             var jwtToken = _tokenRepository.CreateJwtToken(identityUser, roles.ToList());
                             _loginResponseDto.JwtToken = jwtToken;
+                            _loginResponseDto.User.Id = identityUser.Id;
+                            _loginResponseDto.User.Name = identityUser.Email;
+                            _loginResponseDto.User.UserName = identityUser.Email;
+                            _loginResponseDto.User.Password = loginRequestDto.Password;
                             _apiResponse.Result = _loginResponseDto;
                             _apiResponse.StatusCode = System.Net.HttpStatusCode.OK;
                         }

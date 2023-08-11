@@ -1,14 +1,13 @@
-﻿using System;
-using Microsoft.AspNetCore.Identity;
-using SchoolAPI_Service.IRepository;
+﻿using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
+using SchoolAPI_Service.Repository.IRepository;
 
 namespace SchoolAPI_Service.Repository
 {
-	public class TokenRepository : ITokenRepository
+    public class TokenRepository : ITokenRepository
 	{
         private readonly IConfiguration _configuration;
 
