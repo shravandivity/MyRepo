@@ -46,12 +46,14 @@ namespace SchoolAPI_Service.Controllers
                     else
                     {
                         _apiResponse.Result = "Something went wrong.";
+                        _apiResponse.IsSuccess = false;
                         _apiResponse.StatusCode = System.Net.HttpStatusCode.BadRequest;
                     }
                 }
                 else
                 {
                     _apiResponse.Result = "Something went wrong.";
+                    _apiResponse.IsSuccess = false;
                     _apiResponse.StatusCode = System.Net.HttpStatusCode.BadRequest;
                 }
                 return Ok(_apiResponse);
@@ -92,18 +94,24 @@ namespace SchoolAPI_Service.Controllers
                         else
                         {
                             _apiResponse.Result = "Something went wrong.";
+                            _apiResponse.ErrorMessages = new List<string>() { "Something went wrong." };
+                            _apiResponse.IsSuccess = false;
                             _apiResponse.StatusCode = System.Net.HttpStatusCode.BadRequest;
                         }
                     }
                     else
                     {
                         _apiResponse.Result = "Username or Password is not correct!!.";
+                        _apiResponse.ErrorMessages = new List<string>() { "Username or Password is not correct!!." };
+                        _apiResponse.IsSuccess = false;
                         _apiResponse.StatusCode = System.Net.HttpStatusCode.BadRequest;
                     }
                 }
                 else
                 {
                     _apiResponse.Result = "Username does not exist.";
+                    _apiResponse.ErrorMessages = new List<string>() { "Username does not exist." };
+                    _apiResponse.IsSuccess = false;
                     _apiResponse.StatusCode = System.Net.HttpStatusCode.BadRequest;
                 }
                 return Ok(_apiResponse);

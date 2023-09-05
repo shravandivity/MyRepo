@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Op/4f8J0Oyflc4eLidU9WRpPwed5IqvSCInUUFEdypw=",
+  "Hash": "+WSM6YjpbYh5T0kLmyfbPIVBGacVE3dyLPam6Gq/PfY=",
   "Source": "SchoolAPI_Web",
   "BasePath": "_content/SchoolAPI_Web",
   "Mode": "Default",
@@ -51,6 +51,23 @@
       "OriginalItemSpec": "/Users/shravandivity/Projects/MyRepo/APIServices/SchoolAPI_Web/obj/Debug/net7.0/scopedcss/projectbundle/SchoolAPI_Web.bundle.scp.css"
     },
     {
+      "Identity": "/Users/shravandivity/Projects/MyRepo/APIServices/SchoolAPI_Web/wwwroot/.DS_Store",
+      "SourceId": "SchoolAPI_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/shravandivity/Projects/MyRepo/APIServices/SchoolAPI_Web/wwwroot/",
+      "BasePath": "_content/SchoolAPI_Web",
+      "RelativePath": ".DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/.DS_Store"
+    },
+    {
       "Identity": "/Users/shravandivity/Projects/MyRepo/APIServices/SchoolAPI_Web/wwwroot/css/bootstrap.css",
       "SourceId": "SchoolAPI_Web",
       "SourceType": "Discovered",
@@ -66,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/bootstrap.css"
+    },
+    {
+      "Identity": "/Users/shravandivity/Projects/MyRepo/APIServices/SchoolAPI_Web/wwwroot/css/bootstrap.css.map",
+      "SourceId": "SchoolAPI_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/shravandivity/Projects/MyRepo/APIServices/SchoolAPI_Web/wwwroot/",
+      "BasePath": "_content/SchoolAPI_Web",
+      "RelativePath": "css/bootstrap.css.map",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/bootstrap.css.map"
     },
     {
       "Identity": "/Users/shravandivity/Projects/MyRepo/APIServices/SchoolAPI_Web/wwwroot/css/site.css",

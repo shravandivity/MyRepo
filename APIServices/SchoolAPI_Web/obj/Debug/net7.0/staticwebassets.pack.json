@@ -5,8 +5,16 @@
       "PackagePath": "staticwebassets/SchoolAPI_Web.bundle.scp.css"
     },
     {
+      "Id": "/Users/shravandivity/Projects/MyRepo/APIServices/SchoolAPI_Web/wwwroot/.DS_Store",
+      "PackagePath": "staticwebassets/.DS_Store"
+    },
+    {
       "Id": "/Users/shravandivity/Projects/MyRepo/APIServices/SchoolAPI_Web/wwwroot/css/bootstrap.css",
       "PackagePath": "staticwebassets/css/bootstrap.css"
+    },
+    {
+      "Id": "/Users/shravandivity/Projects/MyRepo/APIServices/SchoolAPI_Web/wwwroot/css/bootstrap.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap.css.map"
     },
     {
       "Id": "/Users/shravandivity/Projects/MyRepo/APIServices/SchoolAPI_Web/wwwroot/css/site.css",

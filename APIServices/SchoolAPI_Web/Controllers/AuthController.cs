@@ -55,7 +55,7 @@ namespace SchoolAPI_Web.Controllers
                 identity.AddClaim(new Claim(ClaimTypes.Role, jwt.Claims.FirstOrDefault(u => u.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value));
                 var principal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-
+                SD.UserName= jwt.Claims.FirstOrDefault(u => u.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress").Value;
 
                 HttpContext.Session.SetString(SD.SessionToken, model.jwtToken);
                 return RedirectToAction("Index", "Home");
