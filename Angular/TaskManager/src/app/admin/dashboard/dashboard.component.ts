@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from 'src/app/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +25,7 @@ export class DashboardComponent implements OnInit {
   TeamMembers:any[];
 
 
-  constructor() { 
+  constructor(private dashboardService : DashboardService) { 
 
     this.Designation="Team Leader";
     this.Username="John Smith";
@@ -43,12 +44,14 @@ export class DashboardComponent implements OnInit {
       "Project A","Project B","Project C","Project D"
     ];
     this.Years = [];
-    this.TeamMembersSummary = [
-      {Region:"East",TeamMembersCount:20,TemporayUnavailableMembers:4,},
-      {Region:"West",TeamMembersCount:15,TemporayUnavailableMembers:8,},
-      {Region:"North",TeamMembersCount:19,TemporayUnavailableMembers:1,},
-      {Region:"South",TeamMembersCount:15,TemporayUnavailableMembers:6,},
-    ];
+    this.TeamMembersSummary = this.dashboardService.getTeamMembersSummary();
+
+    // this.TeamMembersSummary = [
+    //   {Region:"East",TeamMembersCount:20,TemporayUnavailableMembers:4,},
+    //   {Region:"West",TeamMembersCount:15,TemporayUnavailableMembers:8,},
+    //   {Region:"North",TeamMembersCount:19,TemporayUnavailableMembers:1,},
+    //   {Region:"South",TeamMembersCount:15,TemporayUnavailableMembers:6,},
+    // ];
     this.TeamMembers = [
       {Region:"East",Members:[
         {ID:1,Name:"Ford",Status:"Available"},

@@ -1,0 +1,178 @@
+<h1>Projects</h1>
+<div class="row">
+    <div class="col-8 mx-auto">
+        <div class="form-group form-row">
+            <label for="drpSearchBy" class="col-form-label col-3">Search By</label>
+            <div class="col-9">
+                <select name="SearchBy" id="drpSearchBy" class="form-control" [(ngModel)]="searchby">
+                    <option value="ProjectID">Project ID</option>
+                    <option value="ProjectName">Project Name</option>
+                    <option value="DateOfStart">Date Of Start</option>
+                    <option value="TeamSize">Team Size</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group form-row">
+            <label for="textSearchText" class="col-form-label col-3">Search Text</label>
+            <div class="col-9">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="txtSearchText" name="SearchText" [(ngModel)]="searchtext">
+                    <div class="input-group-append" (click)="onSearchClick()">
+                        <span class="input-group-text"><i class="fa fa-search"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-8 mx-auto">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#newModal">Create Project</button>
+    </div>
+    <div class="col-8 mx-auto">
+        <table class="table">
+            <thead>
+                <th>Project Id</th>
+                <th>Project Name</th>
+                <th>Date Of Start</th>
+                <th>Team Size</th>
+                <th>Actions</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let project of projects; let i = index">
+                    <td>{{project.projectID}}</td>
+                    <td>{{project.projectName}}</td>
+                    <td>{{project.dateOfStart | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{project.teamSize}}</td>
+                    <td>
+                        <button class="btn btn-info" (click)="onEditClick($event,i)" data-toggle="modal" data-target="#editModal">Edit</button>
+                        &nbsp;&nbsp;<button class="btn btn-warning" (click)="onDeleteClick($event,i)" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal" role="dialog" id="newModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title"><h6>New Project</h6></div>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <!-- <div class="form-group row">
+                    <label for="txtNewProjectId" class="col-sm-4 col-form-label">Project ID</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="txtNewProjectId" style="width:100px" placeholder="Project Id" class="form-control" name="ProjectID">
+                    </div>
+                </div> -->
+                <div class="form-group row">
+                    <label for="txtProjectName" class="col-sm-4 col-form-label">Project Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="txtProjectName" placeholder="Project Name" class="form-control" name="ProjectName" [(ngModel)] = "newProject.projectName">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtDateOfStart" class="col-sm-4 col-form-label">Date Of Start</label>
+                    <div class="col-sm-8">
+                        <input type="date" id="txtDateOfStart" style="width:150px" placeholder="Date Of Start" class="form-control" name="DateOfStart" [(ngModel)] = "newProject.dateOfStart">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtTeamSize" class="col-sm-4 col-form-label">Team Size</label>
+                    <div class="col-sm-8">
+                        <input type="number" id="txtTeamSize" style="width:150px" placeholder="Team Size" class="form-control" name="TeamSize" [(ngModel)]="newProject.teamSize">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-success" data-dismiss="modal" (click)="onSaveClick()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Edit Project-->
+<div class="modal" role="dialog" id="editModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title"><h6>Edit Project</h6></div>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    <label for="txtEditProjectId" class="col-sm-4 col-form-label">Project ID</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="txtEditProjectId" style="width:100px" placeholder="Project Id" class="form-control form-control-plain-text" name="ProjectID" [(ngModel)] = "editProject.projectID" disabled="disabled">
+                    </div>
+                </div> 
+                <div class="form-group row">
+                    <label for="txtEditProjectName" class="col-sm-4 col-form-label">Project Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="txtEditProjectName" placeholder="Project Name" class="form-control" name="ProjectName" [(ngModel)] = "editProject.projectName">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtEditDateOfStart" class="col-sm-4 col-form-label">Date Of Start</label>
+                    <div class="col-sm-8">
+                        <input type="date" id="txtEditDateOfStart" style="width:150px" placeholder="Date Of Start" class="form-control" name="DateOfStart" [(ngModel)] = "editProject.dateOfStart">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtEditTeamSize" class="col-sm-4 col-form-label">Team Size</label>
+                    <div class="col-sm-8">
+                        <input type="number" id="txtEditTeamSize" style="width:150px" placeholder="Team Size" class="form-control" name="TeamSize" [(ngModel)]="editProject.teamSize">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-success" data-dismiss="modal" (click)="onUpdateClick()">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Delete Project-->
+<div class="modal" role="dialog" id="deleteModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title"><h6>Delete Project</h6></div>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    <label for="txtDeleteProjectId" class="col-sm-4 col-form-label">Project ID</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="txtDeleteProjectId" style="width:100px" placeholder="Project Id" class="form-control form-control-plain-text" name="ProjectID" [(ngModel)] = "deleteProject.projectID" disabled="disabled">
+                    </div>
+                </div> 
+                <div class="form-group row">
+                    <label for="txtDeleteProjectName" class="col-sm-4 col-form-label">Project Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="txtDeleteProjectName" placeholder="Project Name" class="form-control" name="ProjectName" [(ngModel)] = "deleteProject.projectName" disabled="disabled">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtDeleteDateOfStart" class="col-sm-4 col-form-label">Date Of Start</label>
+                    <div class="col-sm-8">
+                        <input type="date" id="txtDeleteDateOfStart" style="width:150px" placeholder="Date Of Start" class="form-control" name="DateOfStart" [(ngModel)] = "deleteProject.dateOfStart" disabled="disabled">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtDeleteTeamSize" class="col-sm-4 col-form-label">Team Size</label>
+                    <div class="col-sm-8">
+                        <input type="number" id="txtDeleteTeamSize" style="width:150px" placeholder="Team Size" class="form-control" name="TeamSize" [(ngModel)]="deleteProject.teamSize" disabled="disabled">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-success" data-dismiss="modal" (click)="onDeleteConfirmClick()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
