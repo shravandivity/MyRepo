@@ -1,0 +1,85 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/obj/Debug/net7.0/scopedcss/projectbundle/TaskManagerMvc.bundle.scp.css",
+      "PackagePath": "staticwebassets/TaskManagerMvc.bundle.scp.css"
+    },
+    {
+      "Id": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/.DS_Store",
+      "PackagePath": "staticwebassets/.DS_Store"
+    },
+    {
+      "Id": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/3rdpartylicenses.txt",
+      "PackagePath": "staticwebassets/3rdpartylicenses.txt"
+    },
+    {
+      "Id": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/assets/user.png",
+      "PackagePath": "staticwebassets/assets/user.png"
+    },
+    {
+      "Id": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/favicon.ico",
+      "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/fontawesome-webfont.2b13baa7dd4f54c9.eot",
+      "PackagePath": "staticwebassets/fontawesome-webfont.2b13baa7dd4f54c9.eot"
+    },
+    {
+      "Id": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/fontawesome-webfont.8a7cb27d142e3e19.ttf",
+      "PackagePath": "staticwebassets/fontawesome-webfont.8a7cb27d142e3e19.ttf"
+    },
+    {
+      "Id": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/fontawesome-webfont.cf011583fb81df9f.woff",
+      "PackagePath": "staticwebassets/fontawesome-webfont.cf011583fb81df9f.woff"
+    },
+    {
+      "Id": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/fontawesome-webfont.da909aa098b0ee2d.svg",
+      "PackagePath": "staticwebassets/fontawesome-webfont.da909aa098b0ee2d.svg"
+    },
+    {
+      "Id": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/fontawesome-webfont.e9955780856cf8aa.woff2",
+      "PackagePath": "staticwebassets/fontawesome-webfont.e9955780856cf8aa.woff2"
+    },
+    {
+      "Id": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
+    },
+    {
+      "Id": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/main.0289eb1cb8b96385.js",
+      "PackagePath": "staticwebassets/main.0289eb1cb8b96385.js"
+    },
+    {
+      "Id": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/polyfills.44651ca2c7c1f24e.js",
+      "PackagePath": "staticwebassets/polyfills.44651ca2c7c1f24e.js"
+    },
+    {
+      "Id": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/runtime.9bdba85871858d64.js",
+      "PackagePath": "staticwebassets/runtime.9bdba85871858d64.js"
+    },
+    {
+      "Id": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/scripts.7a03ad5e732d52fb.js",
+      "PackagePath": "staticwebassets/scripts.7a03ad5e732d52fb.js"
+    },
+    {
+      "Id": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/styles.883e8fe0f9296be8.css",
+      "PackagePath": "staticwebassets/styles.883e8fe0f9296be8.css"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.TaskManagerMvc.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.build.TaskManagerMvc.props",
+      "PackagePath": "build\\TaskManagerMvc.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.TaskManagerMvc.props",
+      "PackagePath": "buildMultiTargeting\\TaskManagerMvc.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.buildTransitive.TaskManagerMvc.props",
+      "PackagePath": "buildTransitive\\TaskManagerMvc.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
