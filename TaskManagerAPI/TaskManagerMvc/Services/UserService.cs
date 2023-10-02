@@ -33,6 +33,10 @@ namespace TaskManagerMvc.Services
             {
                 var applicationUser = await _applicationUserManager.FindByNameAsync(loginViewModel.UserName);
                 applicationUser.PasswordHash = null;
+                if (await this._applicationUserManager.IsInRoleAsync(applicationUser, "Admin"))
+                    applicationUser.Role = "Admin";
+                if (await this._applicationUserManager.IsInRoleAsync(applicationUser, "Employee"))
+                    applicationUser.Role = "Employee";
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var key = Encoding.ASCII.GetBytes(_appSettings.Key);
                 var tokenDescriptor = new SecurityTokenDescriptor()
@@ -40,7 +44,8 @@ namespace TaskManagerMvc.Services
                     Subject = new ClaimsIdentity(new Claim[]
                     {
                         new Claim(ClaimTypes.Name, applicationUser.Id),
-                        new Claim(ClaimTypes.Email, applicationUser.Email)
+                        new Claim(ClaimTypes.Email, applicationUser.Email),
+                        new Claim(ClaimTypes.Role, applicationUser.Role)
                     }),
                     Expires = DateTime.UtcNow.AddHours(9),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

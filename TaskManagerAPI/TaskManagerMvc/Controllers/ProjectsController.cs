@@ -27,7 +27,7 @@ namespace TaskManagerMvc.Controllers
         // GET: /<controller>/
         [HttpGet]
         //[Route("api/projects")]
-        public async Task<ActionResult<List<Project>>> Get()
+        public async Task<IActionResult> Get()
         {
             //var projects = await _dbContext.Projects.ToListAsync();
             //List<ProjectView> pv = new List<ProjectView>();
@@ -36,40 +36,53 @@ namespace TaskManagerMvc.Controllers
             //    pv.Add(new ProjectView { ProjectID = p.ProjectID, ProjectName = p.ProjectName, DateOfStart = p.DateOfStart.ToString("dd/MM/yyyy"), TeamSize = p.TeamSize });
             //}
             //return pv;
-            return await _dbContext.Projects.ToListAsync();
+            List<ProjectView> pView = new List<ProjectView>();
+            var projects = await _dbContext.Projects.Include("ClientLocation").ToListAsync();
+            foreach(var p in projects)
+            {
+                pView.Add(new ProjectView { ProjectID = p.ProjectID, ProjectName = p.ProjectName, DateOfStart = p.DateOfStart, TeamSize = p.TeamSize, Active = p.Active, Status = p.Status, ClientLocation = p.ClientLocation, ClientLocationId = p.ClientLocationId });
+            }
+            return Ok(pView);
         }
 
         // GET api/values/5
         [HttpGet("Search/{searchby}/{searchtext}")]
-        public async Task<ActionResult<Project>> Search(string searchby, string searchtext)
+        public async Task<IActionResult> Search(string searchby, string searchtext)
         {
             List<Project> projects;
+            List<ProjectView> pView = new List<ProjectView>();
             switch (searchby.ToLower())
             {
                 case "projectid":
-                    projects = await _dbContext.Projects.Where(p => p.ProjectID.ToString().Contains(searchtext)).ToListAsync();
+                    projects = await _dbContext.Projects.Include("ClientLocation").Where(p => p.ProjectID.ToString().Contains(searchtext)).ToListAsync();
                     break;
                 case "projectname":
-                    projects = await _dbContext.Projects.Where(p => p.ProjectName.Contains(searchtext)).ToListAsync();
+                    projects = await _dbContext.Projects.Include("ClientLocation").Where(p => p.ProjectName.Contains(searchtext)).ToListAsync();
                     break;
                 case "dateofstart":
-                    projects = await _dbContext.Projects.Where(p => p.DateOfStart.ToString().Contains(searchtext)).ToListAsync();
+                    projects = await _dbContext.Projects.Include("ClientLocation").Where(p => p.DateOfStart.ToString().Contains(searchtext)).ToListAsync();
                     break;
                 case "teamsize":
-                    projects = await _dbContext.Projects.Where(p => p.TeamSize.ToString().Contains(searchtext)).ToListAsync();
+                    projects = await _dbContext.Projects.Include("ClientLocation").Where(p => p.TeamSize.ToString().Contains(searchtext)).ToListAsync();
                     break;
                 default:
-                    projects = await _dbContext.Projects.ToListAsync();
+                    projects = await _dbContext.Projects.Include("ClientLocation").ToListAsync();
                     break;
             }
             if (projects != null)
-                return Ok(projects);
+            {
+                foreach (var p in projects)
+                {
+                    pView.Add(new ProjectView { ProjectID = p.ProjectID, ProjectName = p.ProjectName, DateOfStart = p.DateOfStart, TeamSize = p.TeamSize, Active = p.Active, Status = p.Status, ClientLocation = p.ClientLocation, ClientLocationId = p.ClientLocationId });
+                }
+                return Ok(pView);
+            }   
             else
                 return BadRequest();
         }
 
         [HttpPost]
-        public async Task<ActionResult<Project>> Post([FromBody] Project project)
+        public async Task<ActionResult> Post([FromBody] Project project)
         {
             //if (ModelState.IsValid)
             //{
@@ -87,10 +100,11 @@ namespace TaskManagerMvc.Controllers
 
             if (ModelState.IsValid)
             {
+                project.ClientLocation = null;
                 await _dbContext.AddAsync(project);
                 await _dbContext.SaveChangesAsync();
-                
-                return Ok(project);
+                Project existingProject = await _dbContext.Projects.Include("ClientLocation").Where(p => p.ProjectID == project.ProjectID).FirstOrDefaultAsync();
+                return Ok(new ProjectView { ProjectID = existingProject.ProjectID, ProjectName = existingProject.ProjectName, DateOfStart = existingProject.DateOfStart, TeamSize = existingProject.TeamSize, Active = existingProject.Active, Status = existingProject.Status, ClientLocation = existingProject.ClientLocation, ClientLocationId = existingProject.ClientLocationId });
             }
             else
             {
@@ -99,19 +113,25 @@ namespace TaskManagerMvc.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<Project>> Put([FromBody] Project project)
+        public async Task<ActionResult> Put([FromBody] Project project)
         {
             if (ModelState.IsValid)
             {
-                var prj = await _dbContext.Projects.Where(p => p.ProjectID == project.ProjectID).FirstOrDefaultAsync();
+                var prj = await _dbContext.Projects.Include("ClientLocation").Where(p => p.ProjectID == project.ProjectID).FirstOrDefaultAsync();
                 if (prj != null)
                 {
                     prj.ProjectName = project.ProjectName;
                     prj.DateOfStart = project.DateOfStart;
                     prj.TeamSize = project.TeamSize;
+                    prj.Active = project.Active;
+                    prj.ClientLocationId = project.ClientLocationId;
+                    prj.Status = project.Status;
+                    //prj.ClientLocation = null;
                     _dbContext.Update(prj);
                     await _dbContext.SaveChangesAsync();
-                    return Ok(prj);
+                    Project existingProject = await _dbContext.Projects.Include("ClientLocation").Where(p => p.ProjectID == project.ProjectID).FirstOrDefaultAsync();
+                    return Ok(new ProjectView { ProjectID = existingProject.ProjectID, ProjectName = existingProject.ProjectName, DateOfStart = existingProject.DateOfStart, TeamSize = existingProject.TeamSize, Active = existingProject.Active, Status = existingProject.Status, ClientLocation = existingProject.ClientLocation, ClientLocationId = existingProject.ClientLocationId });
+                    
                 }
                 else
                     return BadRequest();

@@ -101,8 +101,17 @@ using (var scope = serviceScopeFactory.CreateScope())
         await roleManager.CreateAsync(role);
     }
 
+    //Create Employee Role
+    if (!await roleManager.RoleExistsAsync("Employee"))
+    {
+        var role = new ApplicationRole();
+        role.Name = "Employee";
+        role.Id = Guid.NewGuid().ToString();
+        await roleManager.CreateAsync(role);
+    }
+
     //Create Admin user
-    if(await userManager.FindByNameAsync("admin") == null)
+    if (await userManager.FindByNameAsync("admin") == null)
     {
         var user = new ApplicationUser();
         user.UserName = "admin";
@@ -122,14 +131,28 @@ using (var scope = serviceScopeFactory.CreateScope())
             //await userManager.AddToRoleAsync(user, "Admin");
     }
 
-    //Create Employee Role
-    if (!await roleManager.RoleExistsAsync("Employee"))
+    //Create Employee user
+    if (await userManager.FindByNameAsync("Employee") == null)
     {
-        var role = new ApplicationRole();
-        role.Name = "Employee";
-        role.Id = Guid.NewGuid().ToString();
-        await roleManager.CreateAsync(role);
+        var user = new ApplicationUser();
+        user.UserName = "Employee";
+        user.Email = "employee@gmail.com";
+        user.Id = Guid.NewGuid().ToString();
+        var userPassword = "Employee123#";
+        var chkUser = await userManager.CreateAsync(user, userPassword);
+        var role = await roleManager.RoleExistsAsync("Employee");
+        if (chkUser.Succeeded)
+        {
+            if (!await userManager.IsInRoleAsync(user, "Employee"))
+            {
+                var result = await userManager.AddToRoleAsync(user, "Employee");
+            }
+
+        }
+        //await userManager.AddToRoleAsync(user, "Admin");
     }
+
+
 
 }
 

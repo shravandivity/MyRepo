@@ -9,6 +9,9 @@ namespace TaskManagerMvc.Identity
 		[NotMapped]
 		public string Token { get; set; }
 
+		[NotMapped]
+		public string Role { get; set; }
+
 		public ApplicationUser()
 		{
 		}

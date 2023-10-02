@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nFeHTJjHoRQ5IxIL7nnjdMGAgSRwZlv7uF75DonREJ8=",
+  "Hash": "+ZCt66vpzkgUxr+gWM5yZ5fzLBqwqJ1UH0D28G9/U2g=",
   "Source": "TaskManagerMvc",
   "BasePath": "_content/TaskManagerMvc",
   "Mode": "Default",
@@ -221,12 +221,12 @@
       "OriginalItemSpec": "wwwroot/index.html"
     },
     {
-      "Identity": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/main.0289eb1cb8b96385.js",
+      "Identity": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/main.9b3eeb582cdf0dcb.js",
       "SourceId": "TaskManagerMvc",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/",
       "BasePath": "_content/TaskManagerMvc",
-      "RelativePath": "main.0289eb1cb8b96385.js",
+      "RelativePath": "main.9b3eeb582cdf0dcb.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -235,7 +235,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/main.0289eb1cb8b96385.js"
+      "OriginalItemSpec": "wwwroot/main.9b3eeb582cdf0dcb.js"
     },
     {
       "Identity": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/polyfills.44651ca2c7c1f24e.js",
@@ -255,12 +255,12 @@
       "OriginalItemSpec": "wwwroot/polyfills.44651ca2c7c1f24e.js"
     },
     {
-      "Identity": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/runtime.9bdba85871858d64.js",
+      "Identity": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/runtime.719a5e3a8488123b.js",
       "SourceId": "TaskManagerMvc",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/",
       "BasePath": "_content/TaskManagerMvc",
-      "RelativePath": "runtime.9bdba85871858d64.js",
+      "RelativePath": "runtime.719a5e3a8488123b.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -269,7 +269,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/runtime.9bdba85871858d64.js"
+      "OriginalItemSpec": "wwwroot/runtime.719a5e3a8488123b.js"
     },
     {
       "Identity": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/scripts.7a03ad5e732d52fb.js",
