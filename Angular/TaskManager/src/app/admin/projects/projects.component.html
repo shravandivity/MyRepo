@@ -89,7 +89,7 @@
                 <div class="form-group row">
                     <label for="txtDateOfStart" class="col-sm-4 col-form-label">Date Of Start</label>
                     <div class="col-sm-8">
-                        <input type="date" id="txtDateOfStart" style="width:150px" placeholder="Date Of Start" #newDateOfStart="ngModel" class="form-control" name="DateOfStart" [(ngModel)] = "newProject.dateOfStart" required="required"
+                        <input type="date" width="100px" id="txtDateOfStart" style="width:150px" placeholder="Date Of Start" #newDateOfStart="ngModel" class="form-control" name="DateOfStart" [(ngModel)] = "newProject.dateOfStart" required="required"
                         [ngClass]="{'is-invalid':newDateOfStart.invalid && (newDateOfStart.dirty || newDateOfStart.touched || newForm.submitted),'is-valid':newDateOfStart.valid && (newDateOfStart.dirty || newDateOfStart.touched || newForm.submitted)}">
                         <span class="text-danger" *ngIf="newDateOfStart.invalid && (newDateOfStart.dirty || newDateOfStart.touched || newForm.submitted) && newDateOfStart.errors!['required']">Date Of Start is required.</span>
                     </div>

@@ -77,6 +77,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   onEditClick(event:any, index:number){
+    
     this.editForm.resetForm();
     setTimeout(()=>{
       this.editProject.projectID = this.projects[index].projectID;
