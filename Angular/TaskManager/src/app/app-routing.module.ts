@@ -6,11 +6,11 @@ import { ProjectsComponent } from './admin/projects/projects.component';
 import { LoginComponent } from './login/login.component';
 import { CanActivateGuardService } from './can-activate-guard.service';
 const routes: Routes = [
-  {path:'dashboard',component:DashboardComponent,canActivate:[CanActivateGuardService]},
+  {path:'dashboard',component:DashboardComponent,canActivate:[CanActivateGuardService],data:{expectedRole : "Admin"}},
   {path:'about',component:AboutComponent},
   {path:'',redirectTo:"login",pathMatch:"full"},
   {path:'login',component:LoginComponent},
-  {path:'projects',component:ProjectsComponent,canActivate:[CanActivateGuardService]}
+  {path:'projects',component:ProjectsComponent,canActivate:[CanActivateGuardService], data:{expectedRole : "Admin"}}
 ];
 
 @NgModule({

@@ -1,8 +1,14 @@
+import { ClientLocation } from "./client-location";
+
 export class Project {
     projectID:number;
     projectName:string;
     dateOfStart:string;
-    teamSize:number
+    teamSize:number;
+    active:boolean;
+    status:string;
+    clientLocationId:number;
+    clientLocation:ClientLocation;
 
     /**
      *
@@ -12,5 +18,9 @@ export class Project {
         this.projectName = "";
         this.dateOfStart = Date.now().toString();
         this.teamSize = 0;
+        this.active = false;
+        this.status = '';
+        this.clientLocationId = 0;
+        this.clientLocation = new ClientLocation();
     }
 }

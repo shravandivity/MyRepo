@@ -24,7 +24,7 @@ import { JwtUnauthorizedInterceptorService } from './jwt-unauthorized-intercepto
     JwtModule.forRoot({
       config:{
         tokenGetter:()=>{
-          return (sessionStorage.getItem('currentUser')?JSON.parse(sessionStorage.getItem('currentUser') as string).token:null);
+          return (sessionStorage.getItem('currentUser') ? JSON.parse(sessionStorage.getItem('currentUser') as string).token:null);
         }
       }
     })
