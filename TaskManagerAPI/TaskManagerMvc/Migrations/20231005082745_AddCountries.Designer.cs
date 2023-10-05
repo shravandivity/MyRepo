@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManagerMvc.Data;
 
@@ -11,9 +12,11 @@ using TaskManagerMvc.Data;
 namespace TaskManagerMvc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231005082745_AddCountries")]
+    partial class AddCountries
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1382,15 +1385,11 @@ namespace TaskManagerMvc.Migrations
 
             modelBuilder.Entity("TaskManagerMvc.Models.Skill", b =>
                 {
-                    b.Property<int>("SkillID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SkillID"));
-
                     b.Property<string>("Id")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("SkillID")
+                        .HasColumnType("int");
 
                     b.Property<string>("SkillLevel")
                         .IsRequired()
@@ -1400,9 +1399,7 @@ namespace TaskManagerMvc.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("SkillID");
-
-                    b.HasIndex("Id");
+                    b.HasKey("Id");
 
                     b.ToTable("Skills");
                 });

@@ -45,6 +45,54 @@ namespace TaskManagerMvc.Controllers
             return Ok(pView);
         }
 
+        [HttpGet("GetProjectByName/{projectname}")]
+        //[Route("api/projects")]
+        public async Task<IActionResult> Get(string projectname)
+        {
+            //var projects = await _dbContext.Projects.ToListAsync();
+            //List<ProjectView> pv = new List<ProjectView>();
+            //foreach (Project p in projects)
+            //{
+            //    pv.Add(new ProjectView { ProjectID = p.ProjectID, ProjectName = p.ProjectName, DateOfStart = p.DateOfStart.ToString("dd/MM/yyyy"), TeamSize = p.TeamSize });
+            //}
+            //return pv;
+
+            var p = await _dbContext.Projects.Include("ClientLocation").Where(p => p.ProjectName == projectname).FirstOrDefaultAsync();
+
+            if (p != null)
+            {
+                var pv = new ProjectView { ProjectID = p.ProjectID, ProjectName = p.ProjectName, DateOfStart = p.DateOfStart, TeamSize = p.TeamSize, Active = p.Active, Status = p.Status, ClientLocation = p.ClientLocation, ClientLocationId = p.ClientLocationId } ;
+
+                return Ok(pv);
+            }
+            else
+                return BadRequest();
+        }
+
+        [HttpGet("GetProjectById/{id}")]
+        //[Route("api/projects")]
+        public async Task<IActionResult> Get(int id)
+        {
+            //var projects = await _dbContext.Projects.ToListAsync();
+            //List<ProjectView> pv = new List<ProjectView>();
+            //foreach (Project p in projects)
+            //{
+            //    pv.Add(new ProjectView { ProjectID = p.ProjectID, ProjectName = p.ProjectName, DateOfStart = p.DateOfStart.ToString("dd/MM/yyyy"), TeamSize = p.TeamSize });
+            //}
+            //return pv;
+
+            var p = await _dbContext.Projects.Include("ClientLocation").Where(p => p.ProjectID == 34).FirstOrDefaultAsync();
+
+            if (p != null)
+            {
+                var pv = new ProjectView { ProjectID = p.ProjectID, ProjectName = p.ProjectName, DateOfStart = p.DateOfStart, TeamSize = p.TeamSize, Active = p.Active, Status = p.Status, ClientLocation = p.ClientLocation, ClientLocationId = p.ClientLocationId };
+
+                return Ok(pv);
+            }
+            else
+                return BadRequest();
+        }
+
         // GET api/values/5
         [HttpGet("Search/{searchby}/{searchtext}")]
         public async Task<IActionResult> Search(string searchby, string searchtext)

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+ZCt66vpzkgUxr+gWM5yZ5fzLBqwqJ1UH0D28G9/U2g=",
+  "Hash": "HXdf0w8nrGQkOzVao9fBf2i0+o9vLGhHackyWx1temI=",
   "Source": "TaskManagerMvc",
   "BasePath": "_content/TaskManagerMvc",
   "Mode": "Default",
@@ -221,12 +221,12 @@
       "OriginalItemSpec": "wwwroot/index.html"
     },
     {
-      "Identity": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/main.9b3eeb582cdf0dcb.js",
+      "Identity": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/main.53d5a350a63ed5fe.js",
       "SourceId": "TaskManagerMvc",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/",
       "BasePath": "_content/TaskManagerMvc",
-      "RelativePath": "main.9b3eeb582cdf0dcb.js",
+      "RelativePath": "main.53d5a350a63ed5fe.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -235,7 +235,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/main.9b3eeb582cdf0dcb.js"
+      "OriginalItemSpec": "wwwroot/main.53d5a350a63ed5fe.js"
     },
     {
       "Identity": "/Users/shravandivity/Projects/MyRepo/TaskManagerAPI/TaskManagerMvc/wwwroot/polyfills.44651ca2c7c1f24e.js",

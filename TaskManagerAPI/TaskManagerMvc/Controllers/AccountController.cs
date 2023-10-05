@@ -34,6 +34,16 @@ namespace TaskManagerMvc.Controllers
                 return BadRequest(new {message = "Username or password is incorrect"});
             return Ok(user);
         }
+
+        [HttpPost]
+        [Route("register")]
+        public async Task<IActionResult> Register([FromBody] SignUpViewModel signUpViewModel)
+        {
+            var user = await _userService.Register(signUpViewModel);
+            if (user == null)
+                return BadRequest(new { message = "Invalid data" });
+            return Ok(user);
+        }
     }
 }
 
