@@ -27,6 +27,12 @@ export class ProjectsService {
     return this.httpClient.get<Project[]>("/api/Projects",{responseType:'json'});
   }
 
+  getProjectByName(id:number):Observable<Project>
+  {
+    //console.log(id);
+    //return this.httpClient.get<Project>("/api/projects/GetProjectByName/" + projectname,{responseType:'json'});
+    return this.httpClient.get<Project>("/api/projects/GetProjectById/" + id,{responseType:'json'});
+  }
   insertProject(newProject : Project):Observable<Project>
   {
     return this.httpClient.post<Project>("/api/Projects",newProject,{responseType:'json'});

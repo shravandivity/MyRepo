@@ -60,7 +60,7 @@
     </div>
 </div>
 
-<form #newForm="ngForm" novalidate="novalidate">
+<form #newForm="ngForm" novalidate="novalidate" appClientLocationStatusValidator>
 <div class="modal" role="dialog" id="newModal">
     <div class="modal-dialog">
         <div class="modal-content" style="width:700px">
@@ -78,12 +78,13 @@
                 <div class="form-group row">
                     <label for="txtProjectName" class="col-sm-4 col-form-label">Project Name</label>
                     <div class="col-sm-8">
-                        <input type="text" #newProjectName="ngModel" id="txtProjectName" placeholder="Project Name" class="form-control" name="ProjectName" [(ngModel)] = "newProject.projectName" required="required" minlength="3" maxlength="30" pattern="^[A-Za-z0-9 /-]*$"
+                        <input type="text"   #newProjectName="ngModel" id="txtProjectName" placeholder="Project Name" class="form-control" name="ProjectName" [(ngModel)] = "newProject.projectName" required="required" minlength="3" maxlength="30" pattern="^[A-Za-z0-9 /-]*$"
                         [ngClass]="{'is-invalid':newProjectName.invalid && (newProjectName.dirty || newProjectName.touched || newForm.submitted),'is-valid':newProjectName.valid && (newProjectName.dirty || newProjectName.touched || newForm.submitted)}">
                         <span class="text-danger" *ngIf="newProjectName.invalid && (newProjectName.dirty || newProjectName.touched || newForm.submitted) && newProjectName.errors!['required']">Project Name is required.</span>
                         <span class="text-danger" *ngIf="newProjectName.invalid && (newProjectName.dirty || newProjectName.touched || newForm.submitted) && newProjectName.errors!['pattern']">Project Name can contain alphabets, digits, dot, hyphen or space only.</span>
                         <span class="text-danger" *ngIf="newProjectName.invalid && (newProjectName.dirty || newProjectName.touched || newForm.submitted) && newProjectName.errors!['minlength']">Project name should be at least 3 characters long.</span>
                         <span class="text-danger" *ngIf="newProjectName.invalid && (newProjectName.dirty || newProjectName.touched || newForm.submitted) && newProjectName.errors!['maxlength']">Project name cannot exceed 30 characters.</span>
+                        <!-- <span class="text-danger" *ngIf="newProjectName.invalid && (newProjectName.dirty || newProjectName.touched || newForm.submitted) && newProjectName.errors!['uniqueprojectname']">Project already exists in database.</span> -->
                     </div>
                 </div>
                 <div class="form-group row">
@@ -116,11 +117,11 @@
                     <label for="rbNewStatus" class="col-sm-4 col-form-label">Status</label>
                     <div class="col-sm-8">
                         <div class="form-check form-check-inline">
-                            <input type="radio" id="rbNewStatusInForce" value="In Force" name="addStatus" #NewStatusInForce="ngModel"  required="required" class="form-check-input" [(ngModel)]="newProject.status">
+                            <input type="radio" id="rbNewStatusInForce" value="In Force" name="Status" #NewStatusInForce="ngModel"  required="required" class="form-check-input" [(ngModel)]="newProject.status">
                             <label for="rbNewStatusInForce" class="form-check-label">In Force</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input type="radio" id="rbNewStatusSupport" value="Support" name="addStatus" #NewStatusSupport="ngModel" required="required" class="form-check-input" [(ngModel)]="newProject.status">
+                            <input type="radio" id="rbNewStatusSupport" value="Support" name="Status" #NewStatusSupport="ngModel" required="required" class="form-check-input" [(ngModel)]="newProject.status">
                             <label for="rbNewStatusSupport" class="form-check-label">Support</label>
                         </div>
                         <span class="text-danger" *ngIf="NewStatusInForce.invalid && (NewStatusInForce.dirty || NewStatusInForce.touched || newForm.submitted) && NewStatusInForce.errors!['required']">Please select status</span>
@@ -135,6 +136,7 @@
                             <option *ngFor="let clientLocation of clientLocations" [value]="clientLocation.clientLocationId">{{clientLocation.clientLocationName}}</option>
                         </select>
                         <span class="text-danger" *ngIf="NewClientLocation.invalid && (NewClientLocation.dirty || NewClientLocation.touched || newForm.submitted) && NewClientLocation.errors!['required']">Please client location</span>
+                        <span class="text-danger" *ngIf="newForm.invalid && (newForm.dirty || newForm.touched || newForm.submitted) && newForm.errors!['clientLocationStatus']">Support projects are not allowed in Tokyo</span>
                     </div>
                 </div>
             </div>
@@ -147,7 +149,7 @@
 </div>
 </form >
 <!--Edit Project-->
-<form #editForm="ngForm" novalidate="novalidate">
+<form #editForm="ngForm" novalidate="novalidate" appClientLocationStatusValidator>
 <div class="modal" role="dialog" id="editModal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -165,12 +167,13 @@
                 <div class="form-group row">
                     <label for="txtEditProjectName" class="col-sm-4 col-form-label">Project Name</label>
                     <div class="col-sm-8">
-                        <input type="text" id="txtEditProjectName" placeholder="Project Name" #editProjectName="ngModel" class="form-control" name="ProjectName" [(ngModel)] = "editProject.projectName" required="required" minlength="3" maxlength="30" pattern="^[A-Za-z0-9 /-]*$"
+                        <input type="text"  id="txtEditProjectName" placeholder="Project Name" #editProjectName="ngModel" class="form-control" name="ProjectName" [(ngModel)] = "editProject.projectName" required="required" minlength="3" maxlength="30" pattern="^[A-Za-z0-9 /-]*$"
                         [ngClass]="{'is-invalid':editProjectName.invalid && (editProjectName.dirty || editProjectName.touched || editForm.submitted),'is-valid':editProjectName.valid && (editProjectName.dirty || editProjectName.touched || editForm.submitted)}">
                         <span class="text-danger" *ngIf="editProjectName.invalid && (editProjectName.dirty || editProjectName.touched || editForm.submitted) && editProjectName.errors!['required']">Project Name is required.</span>
                         <span class="text-danger" *ngIf="editProjectName.invalid && (editProjectName.dirty || editProjectName.touched || editForm.submitted) && editProjectName.errors!['pattern']">Project Name can contain alphabets, digits, dot, hyphen or space only.</span>
                         <span class="text-danger" *ngIf="editProjectName.invalid && (editProjectName.dirty || editProjectName.touched || editForm.submitted) && editProjectName.errors!['minlength']">Project name should be at least 3 characters long.</span>
                         <span class="text-danger" *ngIf="editProjectName.invalid && (editProjectName.dirty || editProjectName.touched || editForm.submitted) && editProjectName.errors!['maxlength']">Project name cannot exceed 30 characters.</span>
+                        <!-- <span class="text-danger" *ngIf="editProjectName.invalid && (editProjectName.dirty || editProjectName.touched || editForm.submitted) && editProjectName.errors!['uniqueProjectName']">Project "{{newProject.projectName}}" already exists in database.</span> -->
                     </div>
                 </div>
                 <div class="form-group row">
@@ -203,11 +206,11 @@
                     <label for="rbEditStatusInForce" class="col-sm-4 col-form-label">Status</label>
                     <div class="col-sm-8">
                         <div class="form-check form-check-inline">
-                            <input type="radio" id="rbEditStatusInForce" value="In Force" #editStatusInForce="ngModel" required="required" name="aditStatus" class="form-check-input" [(ngModel)]="editProject.status">
+                            <input type="radio" id="rbEditStatusInForce" value="In Force" #editStatusInForce="ngModel" required="required" name="Status" class="form-check-input" [(ngModel)]="editProject.status">
                             <label for="rbEditStatusInForce" class="form-check-label">In Force</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input type="radio" id="rbEditStatusSupport" value="Support"  #editStatusInForce="ngModel" required="required" name="editStatus" class="form-check-input" [(ngModel)]="editProject.status">
+                            <input type="radio" id="rbEditStatusSupport" value="Support"  #editStatusInForce="ngModel" required="required" name="Status" class="form-check-input" [(ngModel)]="editProject.status">
                             <label for="rbEditStatusSupport" class="form-check-label">Support</label>
                         </div>
                         <span class="text-danger" *ngIf="editStatusInForce.invalid && (editStatusInForce.dirty || editStatusInForce.touched || editForm.submitted) && editStatusInForce.errors!['required']">Please select status</span>
@@ -221,6 +224,7 @@
                             <option *ngFor="let clientLocation of clientLocations" [value]="clientLocation.clientLocationId">{{clientLocation.clientLocationName}}</option>
                         </select>
                         <span class="text-danger" *ngIf="editClientLocation.invalid && (editClientLocation.dirty || editClientLocation.touched || editForm.submitted) && editClientLocation.errors!['required']">Please client location</span>
+                        <span class="text-danger" *ngIf="editForm.invalid && (editForm.dirty || editForm.touched || editForm.submitted) && editForm.errors!['clientLocationStatus']">Support projects are not allowed in Tokyo</span>
                     </div>
                 </div>
             </div>

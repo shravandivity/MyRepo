@@ -4,6 +4,7 @@ import { LoginViewModel } from './login-view-model';
 import { Observable, map } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { JsonPipe } from '@angular/common';
+import { SignUpViewModel } from './sign-up-view-model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,23 @@ export class LoginService {
   {
     this.httpClient = new HttpClient(this.httpBackEnd);
     return this.httpClient.post<any>("/authenticate",loginViewModel,{responseType:'json'})
+    .pipe(map((user:any)=>{
+      //alert('Login service' + user.userName);
+      //alert('Login token : ' + user.token);
+      if(user)
+      {
+        this.currentUserName = user.userName; 
+        this.jwtToken = user.token;
+        sessionStorage.setItem('currentUser', JSON.stringify(user));
+      }
+      return user;
+    }));
+  }
+
+  public Register(signUpViewModel:SignUpViewModel):Observable<any>
+  {
+    this.httpClient = new HttpClient(this.httpBackEnd);
+    return this.httpClient.post<any>("/register",signUpViewModel,{responseType:'json'})
     .pipe(map((user:any)=>{
       //alert('Login service' + user.userName);
       //alert('Login token : ' + user.token);

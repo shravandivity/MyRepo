@@ -8,12 +8,21 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
 import { LoginComponent } from './login/login.component';
 import { JwtInterceptorService } from './jwt-interceptor.service';
 import { JwtUnauthorizedInterceptorService } from './jwt-unauthorized-interceptor.service';
+import { ClientLocationStatusValidatorDirective } from './client-location-status-validator.directive';
+import { ProjectNameUniqueValidatorDirective } from './project-name-unique-validator.directive';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SignUpComponent,
+    TasksComponent
+    
+    
     
   ],
   imports: [
@@ -21,6 +30,7 @@ import { JwtUnauthorizedInterceptorService } from './jwt-unauthorized-intercepto
     AppRoutingModule,
     HttpClientModule,
     AdminModule,
+    ReactiveFormsModule,
     JwtModule.forRoot({
       config:{
         tokenGetter:()=>{

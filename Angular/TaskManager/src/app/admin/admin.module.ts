@@ -7,6 +7,8 @@ import { DashboardService } from '../dashboard.service';
 import { ProjectsComponent } from './projects/projects.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from '../login/login.component';
+import { ClientLocationStatusValidatorDirective } from '../client-location-status-validator.directive';
+import { ProjectNameUniqueValidatorDirective } from '../project-name-unique-validator.directive';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { LoginComponent } from '../login/login.component';
     AboutComponent,
     MyProfileComponent,
     ProjectsComponent,
-    LoginComponent
+    LoginComponent,
+    ClientLocationStatusValidatorDirective,
+    ProjectNameUniqueValidatorDirective
     
   ],
   imports: [
@@ -26,7 +30,9 @@ import { LoginComponent } from '../login/login.component';
   MyProfileComponent,
   AboutComponent,
   ProjectsComponent,
-  LoginComponent
+  LoginComponent,
+  ClientLocationStatusValidatorDirective,
+  ProjectNameUniqueValidatorDirective
   
   ],
   providers:[DashboardService]
