@@ -44,6 +44,14 @@ namespace TaskManagerMvc.Controllers
                 return BadRequest(new { message = "Invalid data" });
             return Ok(user);
         }
+
+        [HttpGet("getUserByEmail/{Email}")]
+        public async Task<IActionResult> GetUserByEmail(string Email)
+        {
+            var user = await _userService.GetUserByEmail(Email);
+            
+            return Ok(user);
+        }
     }
 }
 

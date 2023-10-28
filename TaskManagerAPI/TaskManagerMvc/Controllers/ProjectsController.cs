@@ -66,7 +66,7 @@ namespace TaskManagerMvc.Controllers
                 return Ok(pv);
             }
             else
-                return BadRequest();
+                return Ok();
         }
 
         [HttpGet("GetProjectById/{id}")]

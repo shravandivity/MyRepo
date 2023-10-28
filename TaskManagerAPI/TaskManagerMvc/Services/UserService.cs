@@ -66,6 +66,11 @@ namespace TaskManagerMvc.Services
             }
         }
 
+        public async Task<ApplicationUser> GetUserByEmail(string Email)
+        {
+            return await _applicationUserManager.FindByEmailAsync(Email);
+        }
+
         public async Task<ApplicationUser> Register(SignUpViewModel signUpViewModel)
         {
             ApplicationUser appUser = new ApplicationUser();

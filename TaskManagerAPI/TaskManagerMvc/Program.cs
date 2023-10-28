@@ -111,7 +111,7 @@ using (var scope = serviceScopeFactory.CreateScope())
     }
 
     //Create Admin user
-    if (await userManager.FindByNameAsync("admin") == null)
+    if (await userManager.FindByNameAsync("admin@gmail.com") == null)
     {
         var user = new ApplicationUser();
         user.UserName = "admin";

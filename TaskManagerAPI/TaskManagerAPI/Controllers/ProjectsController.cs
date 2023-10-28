@@ -56,6 +56,30 @@ namespace TaskManagerAPI.Controllers
                 return BadRequest();   
         }
 
+        [HttpGet("{projectname}")]
+        //[Route("api/projects")]
+        public async Task<IActionResult> Get(string projectname)
+        {
+            //var projects = await _dbContext.Projects.ToListAsync();
+            //List<ProjectView> pv = new List<ProjectView>();
+            //foreach (Project p in projects)
+            //{
+            //    pv.Add(new ProjectView { ProjectID = p.ProjectID, ProjectName = p.ProjectName, DateOfStart = p.DateOfStart.ToString("dd/MM/yyyy"), TeamSize = p.TeamSize });
+            //}
+            //return pv;
+
+            var p = await _dbContext.Projects.Include("ClientLocation").Where(p => p.ProjectName == projectname).FirstOrDefaultAsync();
+
+            if (p != null)
+            {
+                var pv = new ProjectView { ProjectID = p.ProjectID, ProjectName = p.ProjectName, DateOfStart = p.DateOfStart, TeamSize = p.TeamSize, Active = p.Active, Status = p.Status, ClientLocation = p.ClientLocation, ClientLocationId = p.ClientLocation.ClientLocationId };
+
+                return Ok(pv);
+            }
+            else
+                return BadRequest();
+        }
+
         // POST api/values
         [HttpPost]
         public async Task<ActionResult<Project>> Post([FromBody]Project project)
