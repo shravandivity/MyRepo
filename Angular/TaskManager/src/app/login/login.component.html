@@ -1,27 +1,48 @@
-<form>
+<form [formGroup]="loginForm">
     <div class="row">
         <div class="col-lg-6 col-xl-5 col-md-9 mx-auto">
             <div class="card mt-4">
                 <div class="card-header bg-secondary text-white">
                     <h3>Login</h3>
+                    <div appAlert [error]="loginError" *ngIf="loginError"></div>
                 </div>
                 <div class="card-body">
                     <div class="form-group form-row">
                         <label for="UserName" class="col-md-4 col-form-label">Username</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" placeholder="Username" [(ngModel)]="loginViewModel.UserName" name="UserName" autofocus="autofocus">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" >
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                  </span>
+                                </div>
+                                <input type="text" #userName class="form-control" placeholder="Username" [(ngModel)]="loginViewModel.UserName" name="UserName" autofocus="autofocus" formControlName="userName"
+                                [ngClass]="{'is-invalid': loginForm.get('userName').invalid && (loginForm.get('userName').dirty || loginForm.get('userName').touched || loginForm.submitted), 'is-valid': loginForm.get('userName').valid && (loginForm.get('userName').dirty || loginForm.get('userName').touched || loginForm.submitted)}">
+                              </div>
+                              <span class="text-danger" *ngIf="loginForm.get('userName').invalid && (loginForm.get('userName').dirty || loginForm.get('userName').touched || loginForm.submitted) && loginForm.get('userName').errors!['required']">Email is required.</span>
+                            <span class="text-danger" *ngIf="loginForm.get('userName').invalid && (loginForm.get('userName').dirty || loginForm.get('userName').touched || loginForm.submitted) && loginForm.get('userName').errors!['email']">Email should be in correct format.</span>
                         </div>
                     </div>
 
                     <div class="form-group form-row">
                         <label for="Password" class="col-md-4 col-form-label">Password</label>
                         <div class="col-md-8">
-                            <input type="password" class="form-control" placeholder="Password" [(ngModel)]="loginViewModel.Password" name="Password" >
+                            <div class="input-group">
+                                <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" placeholder="Password" [(ngModel)]="loginViewModel.Password" name="Password" formControlName="password"
+                                [ngClass]="{'is-invalid': loginForm.get('password').invalid && (loginForm.get('password').dirty || loginForm.get('password').touched || loginForm.submitted), 'is-valid': loginForm.get('password').valid && (loginForm.get('password').dirty || loginForm.get('password').touched || loginForm.submitted)}">
+                                <div class="input-group-append">
+                                  <span class="input-group-text">
+                                    <i class="fa" [ngClass]="{'fa-eye-slash': !fieldTextType,'fa-eye': fieldTextType}" (click)="toggleFieldTextType()"></i>
+                                  </span>
+                               </div>
+                              
+                            </div>
+                            <span class="text-danger" *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty || loginForm.get('password').touched || loginForm.submitted) && loginForm.get('password').errors!['required']">Password is required.</span>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer text-right">
-                    <span class="text-danger">{{loginError}}&nbsp;</span>
+                    <!-- <span class="text-danger">{{loginError}}&nbsp;</span> -->
                     <button class="btn btn-primary" (click)="onLoginClick($event)">Login</button>
                 </div>
             </div>

@@ -494,13 +494,13 @@
   <div class="collapse navbar-collapse" id="mynav">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" *ngIf="loginService.currentUserName!=''">
-        <a class="nav-link" routerLink="dashboard">Dashboard</a>
+        <a class="nav-link" routerLink="dashboard" routerLinkActive="active">Dashboard</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="about">About</a>
+        <a class="nav-link" routerLink="about" routerLinkActive="active">About</a>
       </li>
       <li class="nav-item" *ngIf="loginService.currentUserName!=''">
-        <a class="nav-link" routerLink="projects">Projects</a>
+        <a class="nav-link" routerLink="projects" routerLinkActive="active">Projects</a>
       </li>
       <li class="nav-item" *ngIf="loginService.currentUserName!=''">
         <a class="nav-link" href="#">{{loginService.currentUserName}}</a>
@@ -509,10 +509,10 @@
         <a class="nav-link" href="#" (click)="loginService.LogOut()">LogOut</a>
       </li>
       <li class="nav-item" *ngIf="loginService.currentUserName==''">
-        <a class="nav-link" href="#" routerLink="login">Login</a>
+        <a class="nav-link" href="#" routerLink="login" routerLinkActive="active">Login</a>
       </li>
       <li class="nav-item" *ngIf="loginService.currentUserName==''">
-        <a class="nav-link" href="#" routerLink="signup">Sign Up</a>
+        <a class="nav-link" href="#" routerLink="signup" routerLinkActive="active">Sign Up</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">

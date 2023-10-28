@@ -12,21 +12,22 @@ export class ProjectNameUniqueValidatorDirective implements AsyncValidator {
 
   constructor(private projectService : ProjectsService) { }
 
-  validate(control: AbstractControl<any, any>): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
+  validate(control: AbstractControl): Observable<ValidationErrors | null> {
     //console.log(control.value);
     return this.projectService.getProjectByName(control.value).pipe(map((existingProject : Project)=>{
+      
       if(existingProject != null)
       {
+        //console.log('Project Exists');
         return {uniqueProjectName:{valid : false}};
       }
       else
       {
+        //console.log('Project not Exists');
         return null;
       }
     }));
   }
-  registerOnValidatorChange?(fn: () => void): void {
-    throw new Error('Method not implemented.');
-  }
+ 
  
 }

@@ -10,7 +10,7 @@
                     <div class="form-group form-row" formGroupName="personName">
                         <label for="firstName" class="col-md-4 col-form-label">First Name:</label>
                         <div class="col-md-8">
-                            <input type="text" name="firstName" id="firstName" placeholder="First Name" class="form-control" formControlName="firstName" 
+                            <input type="text" #firstName name="firstName" id="firstName" placeholder="First Name" class="form-control" formControlName="firstName" 
                             [ngClass]="{'is-invalid': signUpForm.get('personName.firstName').invalid && (signUpForm.get('personName.firstName').dirty || signUpForm.get('personName.firstName').touched || signUpForm.submitted), 'is-valid': signUpForm.get('personName.firstName').valid && (signUpForm.get('personName.firstName').dirty || signUpForm.get('personName.firstName').touched || signUpForm.submitted)}">
                             <span class="text-danger" *ngIf="signUpForm.get('personName.firstName').invalid && (signUpForm.get('personName.firstName').dirty || signUpForm.get('personName.firstName').touched || signUpForm.submitted) && signUpForm.get('personName.firstName').errors!['required']">First Name is required.</span>
                             <span class="text-danger" *ngIf="signUpForm.get('personName.firstName').invalid && (signUpForm.get('personName.firstName').dirty || signUpForm.get('personName.firstName').touched || signUpForm.submitted) && signUpForm.get('personName.firstName').errors!['minlength']">First Name should be minimum 2 character.</span>
@@ -28,10 +28,19 @@
                     <div class="form-group form-row">
                         <label for="email" class="col-md-4 col-form-label">Email:</label>
                         <div class="col-md-8">
-                            <input type="text" name="email" id="email" placeholder="Email" class="form-control" formControlName="email"
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" >
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                  </span>
+                                </div>
+                                <input type="text" name="email" id="email" placeholder="Email" class="form-control" formControlName="email"
                             [ngClass]="{'is-invalid': signUpForm.get('email').invalid && (signUpForm.get('email').dirty || signUpForm.get('email').touched || signUpForm.submitted), 'is-valid': signUpForm.get('email').valid && (signUpForm.get('email').dirty || signUpForm.get('email').touched || signUpForm.submitted)}">
+                              </div>
+                            
                             <span class="text-danger" *ngIf="signUpForm.get('email').invalid && (signUpForm.get('email').dirty || signUpForm.get('email').touched || signUpForm.submitted) && signUpForm.get('email').errors!['required']">Email is required.</span>
                             <span class="text-danger" *ngIf="signUpForm.get('email').invalid && (signUpForm.get('email').dirty || signUpForm.get('email').touched || signUpForm.submitted) && signUpForm.get('email').errors!['email']">Email should be in correct format.</span>
+                            <span class="text-danger" *ngIf="signUpForm.get('email').invalid && (signUpForm.get('email').dirty || signUpForm.get('email').touched || signUpForm.submitted) && signUpForm.get('email').errors!['uniqueEmail']">Email already exists.</span>
                         </div>
                     </div>
                     <div class="form-group form-row">
@@ -54,8 +63,15 @@
                     <div class="form-group form-row">
                         <label for="dateOfBirth" class="col-md-4 col-form-label">Password:</label>
                         <div class="col-md-8">
-                            <input type="password" name="password" id="password"  placeholder="Password"  class="form-control" formControlName="password"
-                            [ngClass]="{'is-invalid': signUpForm.get('password').invalid && (signUpForm.get('password').dirty || signUpForm.get('password').touched || signUpForm.submitted), 'is-valid': signUpForm.get('password').valid && (signUpForm.get('password').dirty || signUpForm.get('password').touched || signUpForm.submitted)}">
+                            <div class="input-group">
+                                <input [type]="fieldTextType ? 'text' : 'password'" name="password" id="password"  placeholder="Password"  class="form-control" formControlName="password"
+                                [ngClass]="{'is-invalid': signUpForm.get('password').invalid && (signUpForm.get('password').dirty || signUpForm.get('password').touched || signUpForm.submitted), 'is-valid': signUpForm.get('password').valid && (signUpForm.get('password').dirty || signUpForm.get('password').touched || signUpForm.submitted)}">
+                                <div class="input-group-append">
+                                  <span class="input-group-text">
+                                    <i class="fa" [ngClass]="{'fa-eye-slash': !fieldTextType,'fa-eye': fieldTextType}" (click)="toggleFieldTextType()"></i>
+                                  </span>
+                               </div>
+                            </div>
                             <span class="text-danger" *ngIf="signUpForm.get('password').invalid && (signUpForm.get('password').dirty || signUpForm.get('password').touched || signUpForm.submitted) && signUpForm.get('password').errors!['required']">Password is required.</span>
                             <span class="text-danger" *ngIf="signUpForm.get('password').invalid && (signUpForm.get('password').dirty || signUpForm.get('password').touched || signUpForm.submitted) && signUpForm.get('password').errors!['minlength']">Minimum length must be 6.</span>
                         </div>
@@ -63,8 +79,15 @@
                     <div class="form-group form-row">
                         <label for="dateOfBirth" class="col-md-4 col-form-label">Confirm Password:</label>
                         <div class="col-md-8">
-                            <input type="password" name="confirmPassword" id="confirmPassword"  placeholder="Confirm Password"  class="form-control" formControlName="confirmPassword"
+                            <div class="input-group">
+                                <input [type]="repeatFieldTextType ? 'text' : 'password'" name="confirmPassword" id="confirmPassword"  placeholder="Confirm Password"  class="form-control" formControlName="confirmPassword"
                             [ngClass]="{'is-invalid': signUpForm.get('confirmPassword').invalid && (signUpForm.get('confirmPassword').dirty || signUpForm.get('confirmPassword').touched || signUpForm.submitted), 'is-valid': signUpForm.get('confirmPassword').valid && (signUpForm.get('confirmPassword').dirty || signUpForm.get('confirmPassword').touched || signUpForm.submitted)}">
+                                <div class="input-group-append">
+                                  <span class="input-group-text">
+                                    <i class="fa" [ngClass]="{'fa-eye-slash': !repeatFieldTextType,'fa-eye': repeatFieldTextType}" (click)="toggleRepeatFieldTextType()"></i>
+                                  </span>
+                               </div>
+                            </div>
                             <span class="text-danger" *ngIf="signUpForm.get('confirmPassword').invalid && (signUpForm.get('confirmPassword').dirty || signUpForm.get('confirmPassword').touched || signUpForm.submitted) && signUpForm.get('confirmPassword').errors!['required']">Confirm Password is required.</span>
                             <span class="text-danger" *ngIf="signUpForm.get('confirmPassword').invalid && (signUpForm.get('confirmPassword').dirty || signUpForm.get('confirmPassword').touched || signUpForm.submitted) && signUpForm.get('confirmPassword').errors!['compareValidator']">Password & Confirm Password do not match.</span>
                         </div>

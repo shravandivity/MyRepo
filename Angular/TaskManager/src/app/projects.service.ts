@@ -1,15 +1,34 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Project } from './project';
-import { Observable } from 'rxjs';
+import { Observable, Observer, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectsService {
 
+// public MyObservable:Observable<boolean>|any = null;
+// private MyObservers:Observer<boolean>[]|any=[];
+public MySubject:Subject<boolean>|any = null;
+
+hideDetails:boolean = false;
   constructor(private httpClient : HttpClient) 
   {
+    // this.MyObservable = new Observable(
+    //   (observer:Observer<boolean>)=>{
+    //     this.MyObservers.push(observer);
+    //   });
 
+    this.MySubject = new Subject<boolean>();
+  }
+ toggleDetails()
+  {
+    this.hideDetails = !this.hideDetails;
+    // for(let i = 0;i < this.MyObservers.length; i++)
+    // {
+    //   this.MyObservers[i].next(this.hideDetails);
+    // }
+    this.MySubject.next(this.hideDetails);
   }
 
   getAllProjects():Observable<Project[]>
@@ -24,14 +43,16 @@ export class ProjectsService {
     //   headers = headers.set("Authorization", "Bearer " + currentUser.token);
     // }
     //alert('Project service:' + currentUser.token);
+    
     return this.httpClient.get<Project[]>("/api/Projects",{responseType:'json'});
   }
 
-  getProjectByName(id:number):Observable<Project>
+  getProjectByName(projectname:string):Observable<Project>
   {
     //console.log(id);
-    //return this.httpClient.get<Project>("/api/projects/GetProjectByName/" + projectname,{responseType:'json'});
-    return this.httpClient.get<Project>("/api/projects/GetProjectById/" + id,{responseType:'json'});
+    //alert(projectname);
+    return this.httpClient.get<Project>("/api/projects/GetProjectByName/" + projectname,{responseType:'json'});
+    //return this.httpClient.get<Project>("/api/projects/GetProjectById/" + id,{responseType:'json'});
   }
   insertProject(newProject : Project):Observable<Project>
   {

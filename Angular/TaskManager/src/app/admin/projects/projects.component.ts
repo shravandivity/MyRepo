@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ProjectsService } from 'src/app/projects.service';
 import { Project } from 'src/app/project';
 import { formatDate } from '@angular/common';
@@ -7,6 +7,8 @@ import { ClientLocation } from 'src/app/client-location';
 import { ClientLocationsService } from 'src/app/client-locations.service';
 import { NgForm } from '@angular/forms';
 import * as $ from 'jquery';
+import { ProjectComponent } from '../project/project.component';
+import { FilterPipe } from 'src/app/filter.pipe';
 
 @Component({
   selector: 'app-projects',
@@ -23,16 +25,23 @@ export class ProjectsComponent implements OnInit {
   editIndex:any = null;
   deleteProject:Project = new Project();
   deleteIndex:any=null;
-  searchby:string="";
+  searchby:string="projectName";
   searchtext:string="";
   @ViewChild("newForm") newForm:NgForm | any = null;
   @ViewChild("editForm") editForm:NgForm | any = null
-
+  isAllChecked:boolean = false;
+  @ViewChildren("prj") prj:QueryList<ProjectComponent>|any = null
+  @ViewChild("prjNameNew") prjNameNew:ElementRef|any = null;
+  @ViewChild("prjNameEdit") prjNameEdit:ElementRef|any = null;
+  currentPageIndex:number=0;
+  pages:any[]=[];
+  pageSize:number=3;
   constructor(private projectsService : ProjectsService, private clientLocationService : ClientLocationsService) {
     
    }
 
   ngOnInit(): void {
+    
     this.projectsService.getAllProjects().subscribe(
       (response:Project[])=>{
         //alert('ngOnOinit');
@@ -42,8 +51,10 @@ export class ProjectsComponent implements OnInit {
           //alert(this.projects[i].dateOfStart);alert(this.projects[i].dateOfStart);
         //}
         //alert(this.projects[0].dateOfStart);
+        
         this.projects=response;
         this.showLoading = false;
+        this.calculateNoOfPages();
       }
     );
 
@@ -55,6 +66,9 @@ export class ProjectsComponent implements OnInit {
 
   onNewClick(event:any){
     this.newForm.resetForm();
+    setTimeout(()=>{
+      this.prjNameNew.nativeElement.focus();
+    },100);
   }
 
   onSaveClick(){
@@ -70,6 +84,7 @@ export class ProjectsComponent implements OnInit {
           this.newProject = new Project();
 
           $('#newFormCancel').trigger("click");
+          this.calculateNoOfPages();
         },(error)=>{console.log(error)}
       );
     }
@@ -95,6 +110,7 @@ export class ProjectsComponent implements OnInit {
       //alert(this.editProject.dateOfStart);
       //alert(formattedDate);
       this.editProject.dateOfStart = formattedDate;
+      this.prjNameEdit.nativeElement.focus();
     }, 100);
   }
 
@@ -140,6 +156,7 @@ export class ProjectsComponent implements OnInit {
         this.projects.splice(this.deleteIndex,1);
         this.deleteProject = new Project();
         this.deleteIndex = null;
+        this.calculateNoOfPages();
       },
       (error)=>{
         console.log(error);
@@ -156,5 +173,50 @@ export class ProjectsComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  // @ViewChildren("prj") prj:QueryList<ProjectComponent>|any = null;
+
+  onHideShowDetails(event:any)
+  {
+    // let projs = this.prj.toArray();
+    // for(let i = 0; i < this.prj.length; i++)
+    // {
+    //    projs[i].toggleDetails();
+    // }
+    this.projectsService.toggleDetails();
+  }
+
+  isAllCheckedChange(event:any)
+  {
+    let projs = this.prj.toArray();
+    for(let i = 0; i < this.prj.length; i++)
+    {
+       projs[i].isAllCheckedChange(this.isAllChecked);
+    }
+  }
+
+  calculateNoOfPages()
+  {
+    let filterPipe = new FilterPipe();
+    var resultProjects = filterPipe.transform(this.projects, this.searchby, this.searchtext);
+    var noOfPages = Math.ceil(resultProjects.length/this.pageSize);
+    //console.log(noOfPages);
+    this.pages=[];
+    for(let i = 0; i < noOfPages; i++)
+    {
+      this.pages.push({pageIndex : i});
+    }
+    this.currentPageIndex = 0;
+  }
+
+  onSearchTextKeyUp(eventy:any)
+  {
+    this.calculateNoOfPages();
+  }
+
+  onPageIndexClicked(pageIndex:number)
+  {
+    this.currentPageIndex = pageIndex;
   }
 }

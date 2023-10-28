@@ -13,6 +13,12 @@ import { ProjectNameUniqueValidatorDirective } from './project-name-unique-valid
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { ProjectComponent } from './admin/project/project.component';
+import { CheckBoxPrinterComponent } from './admin/check-box-printer/check-box-printer.component';
+import { NumberToWOrdsPipe } from './number-to-words.pipe';
+import { FilterPipe } from './filter.pipe';
+import { PagingPipe } from './paging.pipe';
+import { AlertDirective } from './alert.directive';
 
 
 
@@ -20,7 +26,10 @@ import { TasksComponent } from './tasks/tasks.component';
   declarations: [
     AppComponent,
     SignUpComponent,
-    TasksComponent
+    TasksComponent,
+    
+    
+    
     
     
     

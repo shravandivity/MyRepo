@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, FormGroupName, Validators } from '@angular/forms';
 import { CountriesService } from '../countries.service';
 import { Country } from '../country';
@@ -20,7 +20,9 @@ export class SignUpComponent implements OnInit {
   countries:Country[] =[];
   registerError:string|any;
   constructor(private countryService:CountriesService, private formBuilder:FormBuilder, private customValidator:CustomValidatorsService, private loginService:LoginService, private router:Router) { }
-  
+  @ViewChild("firstName") firstName:ElementRef|any = null;
+  fieldTextType: boolean|any;
+  repeatFieldTextType: boolean|any;
   ngOnInit(): void {
     this.countryService.getCountries().subscribe(
       (response)=>{
@@ -36,7 +38,7 @@ export class SignUpComponent implements OnInit {
         firstName:[null,[Validators.required, Validators.minLength(2)]],
       lastName:[null,[Validators.required, Validators.minLength(2)]],
       }),
-      email:[null,[Validators.required,Validators.email]],
+      email:[null,[Validators.required,Validators.email],[this.customValidator.duplicateEmailValidator()],{updateOn:'blur'}],
       mobile:[null,[Validators.required]],
       dateOfBirth:[null,[Validators.required,this.customValidator.minimumAgeValidator(18)]],
       password:[null,[Validators.required, Validators.minLength(6)]],
@@ -55,7 +57,9 @@ export class SignUpComponent implements OnInit {
     this.signUpForm.valueChanges.subscribe((value:any)=>{
       //console.log(value);
     });
-    
+    setTimeout(()=>{
+      this.firstName.nativeElement.focus();
+    },100);
   }
 
   onSubmitClick(){
@@ -88,6 +92,14 @@ export class SignUpComponent implements OnInit {
 
   onRemoveSkill(i:number){
     (<FormArray> this.signUpForm.get('skills')).removeAt(i);
+  }
+
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
+  }
+
+  toggleRepeatFieldTextType() {
+    this.repeatFieldTextType = !this.repeatFieldTextType;
   }
 
 }
