@@ -1,0 +1,13 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: web-api
+spec:
+  selector:
+    app: web-api
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  
+  
