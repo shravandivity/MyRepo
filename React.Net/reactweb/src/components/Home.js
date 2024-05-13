@@ -16,7 +16,8 @@ const GetData = () => {
   // Function to fetch data using Axios
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://localhost:7158/api/Test");
+      //const response = await axios.get("http://localhost:8080/api/Test");
+      const response = await axios.get("/api/Test");
       setData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
